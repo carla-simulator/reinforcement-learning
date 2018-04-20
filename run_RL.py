@@ -10,7 +10,7 @@ import argparse
 import logging
 
 from carla.driving_benchmark import run_driving_benchmark
-from carla.driving_benchmark.experiment_suite import CoRL2017
+from carla.driving_benchmark.experiment_suite import CoRL2017, BasicExperimentSuite
 from agent.runnable_model import A3CAgent
 
 
@@ -78,9 +78,10 @@ if __name__ == '__main__':
 
     # We instantiate an experiment suite. Basically a set of experiments
     # that are going to be evaluated on this benchmark.
-    # if args.corl_2017:
-    experiment_suite = CoRL2017(args.city_name)
-
+    if args.corl_2017:
+        experiment_suite = CoRL2017(args.city_name)
+    else:
+        experiment_suite = BasicExperimentSuite(args.city_name)
 
     # Now actually run the agent_benchmark
     run_driving_benchmark(agent, experiment_suite, args.city_name,
