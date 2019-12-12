@@ -22,7 +22,7 @@ def _sample_discrete_actions(batch_probs):
     # Subtract a tiny value from probabilities in order to avoid
     # "ValueError: sum(pvals[:-1]) > 1.0" in numpy.multinomial
     batch_probs = batch_probs - np.finfo(np.float32).epsneg
-    # Apply absolute function to keep values positive
+    # Apply abs function to keep values positive
     # "ValueError: pvals < 0, pvals > 1 or pvals contains NaNs" in numpy.multinomial
     batch_probs = np.absolute(batch_probs)
     
